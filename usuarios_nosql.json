@@ -1,91 +1,132 @@
-# Vamos ampliar a base com mais dados e variedade de campos para simular um banco NoSQL mais completo
+[
+  // Coleção usuários - documentos exemplo
+  {
+    "_id": 1,
+    "nome": "Larissa Machado",
+    "email": "larissa@email.com",
+    "idade": 22,
+    "ativo": true,
+    "endereco": {
+      "rua": "Rua das Flores",
+      "numero": 123,
+      "cidade": "Recife",
+      "estado": "PE",
+      "cep": "50000-000"
+    },
+    "interesses": ["RPG", "Tecnologia", "Viagens"],
+    "assinatura": {
+      "tipo": "premium",
+      "data_inicio": "2024-01-15",
+      "data_fim": null
+    },
+    "historico_compras": [
+      {
+        "produto": "Curso de Programação",
+        "valor": 250.75,
+        "data": "2024-06-20"
+      },
+      {
+        "produto": "Livro de RPG",
+        "valor": 90.00,
+        "data": "2024-07-10"
+      }
+    ]
+  },
 
-usuarios_ampliado = [
-    {
-        "nome": "Larissa",
-        "email": "larissa@email.com",
-        "idade": 22,
-        "interesses": ["RPG", "Tecnologia", "Viagens"],
-        "status": "ativo",
-        "ultimo_login": "2025-07-23T10:32:00Z",
-        "endereco": {
-            "cidade": "Recife",
-            "estado": "PE",
-            "cep": "50000-000"
-        }
+  {
+    "_id": 2,
+    "nome": "Carlos Silva",
+    "email": "carlos@email.com",
+    "idade": 30,
+    "ativo": false,
+    "endereco": {
+      "rua": "Av. Brasil",
+      "numero": 987,
+      "cidade": "São Paulo",
+      "estado": "SP",
+      "cep": "01000-000"
     },
-    {
-        "nome": "Carlos",
-        "email": "carlos@email.com",
-        "idade": 29,
-        "profissao": "Engenheiro",
-        "interesses": ["Fotografia", "Filmes"],
-        "status": "inativo",
-        "assinante": True
+    "interesses": ["Esportes", "Cinema"],
+    "assinatura": {
+      "tipo": "básico",
+      "data_inicio": "2023-03-10",
+      "data_fim": "2024-03-10"
     },
-    {
-        "nome": "Amanda",
-        "email": "amanda@email.com",
-        "idade": 34,
-        "interesses": ["Moda", "Design", "Arte"],
-        "premium": True,
-        "status": "ativo",
-        "compras": [
-            {"produto": "Curso de design", "valor": 300.0},
-            {"produto": "Tablet", "valor": 1200.0}
-        ]
+    "historico_compras": []
+  },
+
+  {
+    "_id": 3,
+    "nome": "Amanda Oliveira",
+    "email": "amanda@email.com",
+    "idade": 28,
+    "ativo": true,
+    "endereco": {
+      "rua": "Rua das Acácias",
+      "numero": 456,
+      "cidade": "Belo Horizonte",
+      "estado": "MG",
+      "cep": "30100-000"
     },
-    {
-        "nome": "Thiago",
-        "email": "thiago@email.com",
-        "idade": 19,
-        "interesses": ["Jogos", "Esportes"],
-        "ativo": True,
-        "notificacoes": {
-            "email": True,
-            "sms": False
-        }
+    "interesses": ["Moda", "Design", "Arte"],
+    "assinatura": {
+      "tipo": "premium",
+      "data_inicio": "2025-02-01",
+      "data_fim": null
     },
-    {
-        "nome": "Marina",
-        "email": "marina@email.com",
-        "idade": 41,
-        "interesses": ["Literatura", "Tecnologia"],
-        "assinante": False,
-        "status": "pendente",
-        "ultima_compra": None
-    },
-    {
-        "nome": "Rafael",
-        "email": "rafael@email.com",
-        "idade": 27,
-        "interesses": ["Música", "Caminhadas"],
-        "planos": ["Mensal", "Anual"],
-        "status": "ativo"
-    },
-    {
-        "nome": "Júlia",
-        "email": "julia@email.com",
-        "idade": 31,
-        "interesses": [],
-        "status": "inativo",
-        "motivo_desativacao": "Conta inativa por 12 meses"
-    },
-    {
-        "nome": "Davi",
-        "email": "davi@email.com",
-        "idade": 24,
-        "interesses": ["Fotografia", "Viagens"],
-        "recompensas": {
-            "pontos": 1500,
-            "nivel": "ouro"
-        }
+    "historico_compras": [
+      {
+        "produto": "Curso de Design",
+        "valor": 300.00,
+        "data": "2025-03-15"
+      }
+    ],
+    "preferencias": {
+      "receber_newsletter": true,
+      "notificacoes_sms": false
     }
+  }
 ]
 
-# Atualizar o arquivo com os dados mais completos
-caminho_arquivo_ampliado = "/mnt/data/usuarios_nosql_completo.json"
-with open(caminho_arquivo_ampliado, "w", encoding="utf-8") as f:
-    json.dump(usuarios_ampliado, f, ensure_ascii=False, indent=4)
+// --- Exemplos de operações em Mongo Shell (não para colar no JSON, só referência)
 
-caminho_arquivo_ampliado
+// Inserir documento novo
+/*
+db.usuarios.insertOne({
+  nome: "João Pereira",
+  email: "joao@email.com",
+  idade: 35,
+  ativo: true
+});
+*/
+
+// Atualizar documento
+/*
+db.usuarios.updateOne(
+  { nome: "Carlos Silva" },
+  { $set: { ativo: true } }
+);
+*/
+
+// Deletar documento
+/*
+db.usuarios.deleteOne({ nome: "Amanda Oliveira" });
+*/
+
+// Consultar documentos
+/*
+db.usuarios.find({ ativo: true });
+*/
+
+// Criar índice
+/*
+db.usuarios.createIndex({ email: 1 }, { unique: true });
+*/
+
+// Agregação simples - contar usuários ativos
+/*
+db.usuarios.aggregate([
+  { $match: { ativo: true } },
+  { $count: "total_ativos" }
+]);
+*/
