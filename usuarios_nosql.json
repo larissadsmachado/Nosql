@@ -1,0 +1,91 @@
+# Vamos ampliar a base com mais dados e variedade de campos para simular um banco NoSQL mais completo
+
+usuarios_ampliado = [
+    {
+        "nome": "Larissa",
+        "email": "larissa@email.com",
+        "idade": 22,
+        "interesses": ["RPG", "Tecnologia", "Viagens"],
+        "status": "ativo",
+        "ultimo_login": "2025-07-23T10:32:00Z",
+        "endereco": {
+            "cidade": "Recife",
+            "estado": "PE",
+            "cep": "50000-000"
+        }
+    },
+    {
+        "nome": "Carlos",
+        "email": "carlos@email.com",
+        "idade": 29,
+        "profissao": "Engenheiro",
+        "interesses": ["Fotografia", "Filmes"],
+        "status": "inativo",
+        "assinante": True
+    },
+    {
+        "nome": "Amanda",
+        "email": "amanda@email.com",
+        "idade": 34,
+        "interesses": ["Moda", "Design", "Arte"],
+        "premium": True,
+        "status": "ativo",
+        "compras": [
+            {"produto": "Curso de design", "valor": 300.0},
+            {"produto": "Tablet", "valor": 1200.0}
+        ]
+    },
+    {
+        "nome": "Thiago",
+        "email": "thiago@email.com",
+        "idade": 19,
+        "interesses": ["Jogos", "Esportes"],
+        "ativo": True,
+        "notificacoes": {
+            "email": True,
+            "sms": False
+        }
+    },
+    {
+        "nome": "Marina",
+        "email": "marina@email.com",
+        "idade": 41,
+        "interesses": ["Literatura", "Tecnologia"],
+        "assinante": False,
+        "status": "pendente",
+        "ultima_compra": None
+    },
+    {
+        "nome": "Rafael",
+        "email": "rafael@email.com",
+        "idade": 27,
+        "interesses": ["Música", "Caminhadas"],
+        "planos": ["Mensal", "Anual"],
+        "status": "ativo"
+    },
+    {
+        "nome": "Júlia",
+        "email": "julia@email.com",
+        "idade": 31,
+        "interesses": [],
+        "status": "inativo",
+        "motivo_desativacao": "Conta inativa por 12 meses"
+    },
+    {
+        "nome": "Davi",
+        "email": "davi@email.com",
+        "idade": 24,
+        "interesses": ["Fotografia", "Viagens"],
+        "recompensas": {
+            "pontos": 1500,
+            "nivel": "ouro"
+        }
+    }
+]
+
+# Atualizar o arquivo com os dados mais completos
+caminho_arquivo_ampliado = "/mnt/data/usuarios_nosql_completo.json"
+with open(caminho_arquivo_ampliado, "w", encoding="utf-8") as f:
+    json.dump(usuarios_ampliado, f, ensure_ascii=False, indent=4)
+
+caminho_arquivo_ampliado
